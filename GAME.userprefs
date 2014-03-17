@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\teleporter.js">
+    <Files>
+      <File FileName="Assets\teleporter.js" Line="22" Column="2" />
+      <File FileName="Assets\Standard Assets (Mobile)\Scripts\SmoothFollow2D.js" Line="1" Column="1" />
+      <File FileName="Assets\FourButtonControl.js" Line="83" Column="3" />
+      <File FileName="Assets\HealthManager.js" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
