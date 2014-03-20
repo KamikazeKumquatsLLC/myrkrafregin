@@ -45,7 +45,8 @@ function Update () {
 	positionReady = true;
 
 	var movement = Vector3.zero;
-	thisTransform.position.z = 0;
+	
+	velocity.z = 0;
 
 	// Apply movement from move joystick
 	if ( leftButton.pressed && !pauseButton.paused ) {
