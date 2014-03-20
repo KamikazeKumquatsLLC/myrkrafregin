@@ -39,6 +39,22 @@ function Update () {
 		this.transform.position.x += 0.5;
 		debouncer = true;
 	}
+	
+	if( isLegLeft ){
+		if( fbc.leftButton.pressed ){
+			this.transform.position.z = 0.01;
+		}else if ( fbc.rightButton.pressed ){
+			this.transform.position.z = -0.01;
+		}
+	}
+	
+	if( ( !isLegLeft && fbc.rightButton.pressed ) && debouncer ){
+		this.transform.position.x += 0.5;
+		debouncer = false;
+	}else if( ( isLegLeft && fbc.leftButton.pressed ) && debouncer ){
+		this.transform.position.x -= 0.5;
+		debouncer = false;
+	}
 
 	if( ( fbc.leftButton.pressed || fbc.rightButton.pressed ) && fbc.charIsGrounded ){
 		if( fbc.leftButton.pressed ){	
@@ -76,7 +92,7 @@ function Update () {
 		}
 	}else{
 		if( debouncer ){
-			debouncer = !debouncer;
+			debouncer = false;
 			if( !isLegLeft ){
 				this.transform.position.x += 0.5;
 			}else if( isLegLeft ){
