@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-@script RequireComponent( CharacterController )
+@script RequireComponent( SoberCharacterController )
 
 var leftButton : CompatibleButton;
 var rightButton : CompatibleButton;
@@ -18,7 +18,7 @@ var pauseButton : PauseButton;
 var charIsGrounded;
 
 private var thisTransform : Transform;
-private var character : CharacterController;
+private var character : SoberCharacterController;
 private var velocity : Vector3;
 private var activeTeleporter : teleporter;
 
@@ -27,10 +27,10 @@ var chd : changeHeadDirection;
 private var hm : HealthManager;
 
 function Start () {
-	// Cache component lookup at startup instead of doing this every frame		
+	// Cache component lookup at startup instead of doing this every frame
 	thisTransform = GetComponent( Transform );
-	character = GetComponent( CharacterController );
-	hm = GetComponent( HealthManager );	
+	character = GetComponent( SoberCharacterController );
+	hm = GetComponent( HealthManager );
 
 	// Move the character to the correct start position in the level, if one exists
 	var spawn = GameObject.Find( "PlayerSpawn" );
@@ -57,7 +57,7 @@ function Update () {
 		movement = Vector3.right * speed;
 		chd.changeTheHeadDirection(1);
 	}
-	
+
 	// Check for jump
 	if ( character.isGrounded && jumpButton.pressed && !pauseButton.paused ) {
 		velocity = Vector3.zero;
