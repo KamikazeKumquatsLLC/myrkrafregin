@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\moveLegsOnWalk.js">
     <Files>
-      <File FileName="Assets\moveLegsOnWalk.js" Line="113" Column="58" />
-      <File FileName="Assets\moveLegsOnWalk.js" Line="179" Column="2" />
+      <File FileName="Assets\FourButtonControl.js" Line="51" Column="33" />
+      <File FileName="Assets\moveLegsOnWalk.js" Line="33" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

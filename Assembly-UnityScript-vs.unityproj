@@ -51,6 +51,7 @@
      <Compile Include="Assets\EnemyABehavior.js" />
      <Compile Include="Assets\FourButtonControl.js" />
      <Compile Include="Assets\HealthManager.js" />
+     <Compile Include="Assets\OnEnterDoor.js" />
      <Compile Include="Assets\OptionsButton.js" />
      <Compile Include="Assets\OptionsReturnButton.js" />
      <Compile Include="Assets\PauseButton.js" />

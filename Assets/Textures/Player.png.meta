@@ -54,18 +54,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 219
-        y: 249
+        y: 246
         width: 8
-        height: 8
+        height: 11
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: legLeftUp
       rect:
         serializedVersion: 2
         x: 228
-        y: 249
+        y: 246
         width: 8
-        height: 8
+        height: 11
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: legLeftDown

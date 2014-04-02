@@ -30,7 +30,7 @@ function Start () {
 	_render = GetComponent ( SpriteRenderer );
 	//character = GetComponent( CharacterController );
 	if(legIsUp){
-		legStageCount = legTicks;
+		legStageCount = 0;
 		legMoveStage = 2;
 	}else{
 		legStageCount = 0;

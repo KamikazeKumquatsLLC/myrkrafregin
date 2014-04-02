@@ -47,6 +47,10 @@ function Update () {
 	var movement = Vector3.zero;
 	
 	velocity.z = 0;
+	
+	if( this.transform.position.y <= -100 ){
+		hm.minusHealth();
+	}
 
 	// Apply movement from move joystick
 	if ( leftButton.pressed && !pauseButton.paused ) {
@@ -105,4 +109,8 @@ function setActiveTeleporter ( g : teleporter ){
 
 function getActiveTeleporter (){
 	return activeTeleporter;
+}
+
+function movePlayer( t : Transform ){
+	this.transform.position = t.position;
 }
