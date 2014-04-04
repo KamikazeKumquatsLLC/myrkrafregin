@@ -41,7 +41,7 @@ function Start () {
 	debouncer = false;
 }
 
-function Update () {
+function FixedUpdate () {
 	this.changeLegSpriteBasedOnStage();
 	this.changeLegX();
 }

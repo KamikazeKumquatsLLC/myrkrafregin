@@ -8,6 +8,8 @@ private var healthHigh : int;
 
 var healthCurrent : int;
 
+var godMode : boolean; 
+
 function Start () {
 	healthCurrent = maxHealth;
 
@@ -17,7 +19,9 @@ function Start () {
 }
 
 function Update () {
-
+	if(godMode){
+		healHealth();
+	}
 }
 
 function getHealth () {

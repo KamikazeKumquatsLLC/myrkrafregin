@@ -45,10 +45,9 @@ function Update () {
 	positionReady = true;
 
 	var movement = Vector3.zero;
+	thisTransform.position.z = 0;
 	
-	velocity.z = 0;
-	
-	if( this.transform.position.y <= -100 ){
+	if( this.transform.position.y <= -20 ){
 		hm.minusHealth();
 	}
 
@@ -113,4 +112,8 @@ function getActiveTeleporter (){
 
 function movePlayer( t : Transform ){
 	this.transform.position = t.position;
+}
+
+function enemyHitPlayer(){
+	hm.minusHealth();
 }
