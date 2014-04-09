@@ -1,8 +1,5 @@
 ﻿#pragma strict
 
-@script RequireComponent( BoxCollider2D )
-@script RequireComponent( Rigidbody2D )
-
 var isGrounded : boolean = false;
 
 private var reset = false;
@@ -28,11 +25,11 @@ private function getIsGrounded() : boolean {
   //return leftEdgeHit != null || rightEdgeHit != null;
   var result = false;
   if (leftEdgeHit.transform != null) {
-    Debug.Log(leftEdgeHit.transform.ToString());
+    //Debug.Log(leftEdgeHit.transform.ToString());
     result = true;
   }
   if (rightEdgeHit.transform != null) {
-    Debug.Log(rightEdgeHit.transform.ToString());
+    //Debug.Log(rightEdgeHit.transform.ToString());
     result = true;
   }
   return result;

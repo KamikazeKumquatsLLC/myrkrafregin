@@ -1,6 +1,7 @@
 ﻿#pragma strict
 
-@script RequireComponent( SoberCharacterController )
+@script RequireComponent( BoxCollider2D )
+@script RequireComponent( Rigidbody2D )
 
 var leftButton : CompatibleButton;
 var rightButton : CompatibleButton;
@@ -10,6 +11,7 @@ var speed : float = 4;
 var jumpStrength : float = 16;
 var decayFactor : float = 0.8;
 var positionReady = false;
+private var facingRight = true;
 
 var health = 3;
 
@@ -17,74 +19,60 @@ var pauseButton : PauseButton;
 
 var charIsGrounded;
 
-private var thisTransform : Transform;
-private var character : SoberCharacterController;
 private var velocity : Vector3;
 private var activeTeleporter : teleporter;
 
 var chd : changeHeadDirection;
 
 private var hm : HealthManager;
+private var anim : Animator;
 
 function Start () {
 	// Cache component lookup at startup instead of doing this every frame
-	thisTransform = GetComponent( Transform );
-	character = GetComponent( SoberCharacterController );
 	hm = GetComponent( HealthManager );
+  anim = GetComponent(Animator);
 
 	// Move the character to the correct start position in the level, if one exists
 	var spawn = GameObject.Find( "PlayerSpawn" );
 	if ( spawn ) {
-		thisTransform.position = spawn.transform.position;
+		transform.position = spawn.transform.position;
 	}
 }
 
-function Update () {
-	charIsGrounded = character.isGrounded;
+function FixedUpdate () {
+  if (leftButton.pressed && !pauseButton.paused) {
+    rigidbody2D.velocity.x = -speed;
+    if (facingRight) {
+      Flip();
+    }
+  }
+  if (rightButton.pressed && !pauseButton.paused) {
+    rigidbody2D.velocity.x = speed;
+    if (!facingRight) {
+      Flip();
+    }
+  }
+  if (!leftButton.pressed && !rightButton.pressed) {
+    rigidbody2D.velocity.x = 0;
+  }
+  Debug.Log(Mathf.Abs(rigidbody2D.velocity.x));
+  anim.SetFloat("Speed", Mathf.Abs(rigidbody2D.velocity.x));
+}
 
+private function Flip () {
+  facingRight = !facingRight;
+  transform.localScale.x *= -1;
+}
+
+function Update () {
 	positionReady = true;
 
-	var movement = Vector3.zero;
-	thisTransform.position.z = 0;
-
-	// Apply movement from move joystick
-	if ( leftButton.pressed && !pauseButton.paused ) {
-		movement = Vector3.left * speed;
-		chd.changeTheHeadDirection(0);
-	}
-
-	if ( rightButton.pressed && !pauseButton.paused ) {
-		movement = Vector3.right * speed;
-		chd.changeTheHeadDirection(1);
-	}
-
-	// Check for jump
-	if ( character.isGrounded && jumpButton.pressed && !pauseButton.paused ) {
-		velocity = Vector3.zero;
-		velocity.y = jumpStrength;
-	}
-
-	if (velocity.y != 0) {
-		velocity.y += Physics.gravity.y * Time.deltaTime;
-	}
-	
-	movement += Physics.gravity;
-	movement += velocity;
-	movement *= Time.deltaTime;
-	
-	// Actually move the character	
-	character.Move( movement );
-
-	if ( character.isGrounded ) {
-		velocity = Vector3.zero;
-	}
-	
 	//temp respawn stuff
 	if ( hm.isDead() ){
 		var spawn = GameObject.Find( "PlayerSpawn" );
-		
+
 		if ( spawn ) {
-			thisTransform.position = spawn.transform.position;
+			transform.position = spawn.transform.position;
 			hm.respawned();
 		}
 	}
