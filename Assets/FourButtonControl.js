@@ -7,9 +7,8 @@ var leftButton : CompatibleButton;
 var rightButton : CompatibleButton;
 var jumpButton : CompatibleButton;
 
-var speed : float = 4;
-var jumpStrength : float = 16;
-var decayFactor : float = 0.8;
+var speed : float = 10;
+var jumpStrength : float = 80;
 var positionReady = false;
 private var facingRight = true;
 
@@ -17,7 +16,10 @@ var health = 3;
 
 var pauseButton : PauseButton;
 
-var charIsGrounded;
+var grounded = false;
+var groundCheck : Transform;
+var groundRadius = 0.2;
+var whatIsGround : LayerMask;
 
 private var velocity : Vector3;
 private var activeTeleporter : teleporter;
@@ -40,6 +42,9 @@ function Start () {
 }
 
 function FixedUpdate () {
+  grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+  anim.SetBool("Ground", grounded);
+
   if (leftButton.pressed && !pauseButton.paused) {
     rigidbody2D.velocity.x = -speed;
     if (facingRight) {
@@ -55,8 +60,8 @@ function FixedUpdate () {
   if (!leftButton.pressed && !rightButton.pressed) {
     rigidbody2D.velocity.x = 0;
   }
-  Debug.Log(Mathf.Abs(rigidbody2D.velocity.x));
   anim.SetFloat("Speed", Mathf.Abs(rigidbody2D.velocity.x));
+  anim.SetFloat("vSpeed", rigidbody2D.velocity.y);
 }
 
 private function Flip () {
@@ -66,6 +71,11 @@ private function Flip () {
 
 function Update () {
 	positionReady = true;
+
+  if (grounded && jumpButton.pressed) {
+    anim.SetBool("Ground", false);
+    rigidbody2D.AddForce(new Vector2(0, jumpStrength));
+  }
 
 	//temp respawn stuff
 	if ( hm.isDead() ){

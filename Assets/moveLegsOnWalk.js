@@ -24,7 +24,7 @@ function Start () {
 }
 
 function Update () {
-	if( ( fbc.leftButton.pressed || fbc.rightButton.pressed ) && fbc.charIsGrounded ){
+	if( ( fbc.leftButton.pressed || fbc.rightButton.pressed ) && fbc.grounded ){
 		if(legIsUp && legUpCount >= legTicks){
 			_render.sprite = legDown;
 			legIsUp = false;
@@ -40,7 +40,7 @@ function Update () {
 		}else if( !legIsUp && legUpCount < legTicks){
 			legUpCount--;
 		}
-	}else if( fbc.charIsGrounded || fbc.pauseButton.paused ){
+	}else if( fbc.grounded || fbc.pauseButton.paused ){
 		_render.sprite = legDown;
 	}else{
 		_render.sprite = legUp;
