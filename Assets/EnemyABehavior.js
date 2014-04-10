@@ -11,13 +11,29 @@ var player : FourButtonControl;
 var headLeft : Sprite;
 var headRight : Sprite;
 
+var gravity : double;
+
+var health : int;
+
 private var _render : SpriteRenderer;
+private var isGrounded : boolean;
 
 function Start () {
 	_render = GetComponent ( SpriteRenderer );
+	isGrounded = false;
 }
 
 function Update () {
+	move();
+	doGravity();
+	
+	if(health <= 0){
+		Debug.Log("\"Blegh! I'm dead\" -" + this.gameObject.name); 
+		Destroy(this.gameObject);
+	}
+}
+
+function move(){
 	if(waitTicks == 5){
 		var distanceX = this.transform.position.x - player.transform.position.x;
 		var distanceY = this.transform.position.y - player.transform.position.y;
@@ -28,13 +44,13 @@ function Update () {
 				this.transform.position.x = (speed <= -distanceX ? this.transform.position.x + speed : this.transform.position.x + distanceX);
 			}
 		}
-		if(distanceY != null && distanceY != 0){
-			if(distanceY > 0){
-				this.transform.position.y = (speed <= distanceY ? this.transform.position.y - speed : this.transform.position.y - distanceY);
-			}else{
-				this.transform.position.y = (speed <= -distanceY ? this.transform.position.y + speed : this.transform.position.y + distanceY);
-			}
-		}
+//		if(distanceY != null && distanceY != 0){
+//			if(distanceY > 0){
+//				this.transform.position.y = (speed <= distanceY ? this.transform.position.y - speed : this.transform.position.y - distanceY);
+//			}else{
+//				this.transform.position.y = (speed <= -distanceY ? this.transform.position.y + speed : this.transform.position.y + distanceY);
+//			}
+//		}
 		waitTicks = 0;
 		
 		if((distanceX <= 0.75 && distanceX >= -0.75) && (distanceY <= 1.65 && distanceY >= -1.65)){
@@ -42,11 +58,27 @@ function Update () {
 		}
 	}
 	waitTicks++;
-	Debug.Log(distanceX + ", " + distanceY);
+	//Debug.Log(distanceX + ", " + distanceY);
 	
 	if(this.transform.position.x - player.transform.position.x > 0){
 		_render.sprite = headLeft;
 	}else{
 		_render.sprite = headRight;
-	}		
+	}	
+}
+
+function OnCollisionEnter(thingCollidedWith : Collision){
+	if(true){
+		isGrounded = true;
+	}
+}
+
+function doGravity(){
+	if(isGrounded == false){
+		//this.transform.position.y -= gravity;
+	}
+}
+
+function hurt( i : int ){
+	this.health -= i;
 }

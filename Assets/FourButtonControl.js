@@ -5,6 +5,9 @@
 var leftButton : CompatibleButton;
 var rightButton : CompatibleButton;
 var jumpButton : CompatibleButton;
+var shootButton : CompatibleButton;
+
+private var shootButtonDebouncer : boolean;
 
 var speed : float = 4;
 var jumpStrength : float = 16;
@@ -14,6 +17,8 @@ var positionReady = false;
 var health = 3;
 
 var pauseButton : PauseButton;
+
+var Bullet : Bullets;
 
 var charIsGrounded;
 
@@ -30,7 +35,9 @@ function Start () {
 	// Cache component lookup at startup instead of doing this every frame		
 	thisTransform = GetComponent( Transform );
 	character = GetComponent( CharacterController );
-	hm = GetComponent( HealthManager );	
+	hm = GetComponent( HealthManager );
+	
+	shootButtonDebouncer = false;
 
 	// Move the character to the correct start position in the level, if one exists
 	var spawn = GameObject.Find( "PlayerSpawn" );
@@ -60,6 +67,13 @@ function Update () {
 	if ( rightButton.pressed && !pauseButton.paused ) {
 		movement = Vector3.right * speed;
 		chd.changeTheHeadDirection(1);
+	}
+	
+	if ( shootButton.pressed && !shootButtonDebouncer ) {
+		this.fire();
+		shootButtonDebouncer = true;
+	}else if( !shootButton.pressed && shootButtonDebouncer ) {
+		shootButtonDebouncer = false;
 	}
 	
 	// Check for jump
@@ -116,4 +130,11 @@ function movePlayer( t : Transform ){
 
 function enemyHitPlayer(){
 	hm.minusHealth();
+}
+
+function fire(){
+	var bulletClone : Bullets = Instantiate(Bullet);
+	bulletClone.transform.position = this.transform.position;
+	bulletClone.rigidbody2D.AddForce(Vector2(3000,0));
+	Destroy(bulletClone.gameObject, 0.5);
 }
