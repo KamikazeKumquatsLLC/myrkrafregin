@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-@script RequireComponent( BoxCollider2D )
+@script RequireComponent( Collider2D )
 @script RequireComponent( Rigidbody2D )
 
 var leftButton : CompatibleButton;
@@ -11,8 +11,6 @@ var speed : float = 10;
 var jumpStrength : float = 80;
 var positionReady = false;
 private var facingRight = true;
-
-var health = 3;
 
 var pauseButton : PauseButton;
 
