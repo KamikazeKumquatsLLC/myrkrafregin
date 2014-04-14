@@ -30,7 +30,7 @@ function Update () {
 	}
 }
 
-function OnTriggerEnter ( player : Collider ){
+function OnTriggerEnter2D ( player : Collider2D ){
 	hm.healHealth();
 
 	if(!teleState){

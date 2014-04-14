@@ -1,6 +1,7 @@
-﻿#pragma strict
+#pragma strict
 
-@script RequireComponent( CharacterController )
+@script RequireComponent( Collider2D )
+@script RequireComponent( Rigidbody2D )
 
 var leftButton : CompatibleButton;
 var rightButton : CompatibleButton;
@@ -9,100 +10,90 @@ var shootButton : CompatibleButton;
 
 private var shootButtonDebouncer : boolean;
 
-var speed : float = 4;
-var jumpStrength : float = 16;
-var decayFactor : float = 0.8;
+var speed : float = 10;
+var jumpStrength : float = 80;
 var positionReady = false;
-
-var health = 3;
+private var facingRight = true;
 
 var pauseButton : PauseButton;
 
-var Bullet : Bullets;
+var BulletTemplate : Bullets;
+var bulletSource : Transform;
 
-var charIsGrounded;
+var grounded = false;
+var groundCheck : Transform;
+var groundRadius = 0.2;
+var whatIsGround : LayerMask;
 
-private var thisTransform : Transform;
-private var character : CharacterController;
 private var velocity : Vector3;
 private var activeTeleporter : teleporter;
 
-var chd : changeHeadDirection;
-
 private var hm : HealthManager;
+private var anim : Animator;
 
 function Start () {
-	// Cache component lookup at startup instead of doing this every frame		
-	thisTransform = GetComponent( Transform );
-	character = GetComponent( CharacterController );
+	// Cache component lookup at startup instead of doing this every frame
 	hm = GetComponent( HealthManager );
-	
+    anim = GetComponent(Animator);
+
 	shootButtonDebouncer = false;
 
 	// Move the character to the correct start position in the level, if one exists
 	var spawn = GameObject.Find( "PlayerSpawn" );
 	if ( spawn ) {
-		thisTransform.position = spawn.transform.position;
+		transform.position = spawn.transform.position;
 	}
 }
 
-function Update () {
-	charIsGrounded = character.isGrounded;
+function FixedUpdate () {
+  grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+  anim.SetBool("Ground", grounded);
 
+  if (leftButton.pressed && !pauseButton.paused) {
+    rigidbody2D.velocity.x = -speed;
+    if (facingRight) {
+      Flip();
+    }
+  }
+  if (rightButton.pressed && !pauseButton.paused) {
+    rigidbody2D.velocity.x = speed;
+    if (!facingRight) {
+      Flip();
+    }
+  }
+  if (!leftButton.pressed && !rightButton.pressed) {
+    rigidbody2D.velocity.x = 0;
+  }
+  anim.SetFloat("Speed", Mathf.Abs(rigidbody2D.velocity.x));
+  anim.SetFloat("vSpeed", rigidbody2D.velocity.y);
+}
+
+private function Flip () {
+  facingRight = !facingRight;
+  transform.localScale.x *= -1;
+}
+
+function Update () {
 	positionReady = true;
 
-	var movement = Vector3.zero;
-	thisTransform.position.z = 0;
-	
-	if( this.transform.position.y <= -20 ){
-		hm.minusHealth();
-	}
+  if (grounded && jumpButton.pressed) {
+    anim.SetBool("Ground", false);
+    rigidbody2D.AddForce(new Vector2(0, jumpStrength));
+  }
 
-	// Apply movement from move joystick
-	if ( leftButton.pressed && !pauseButton.paused ) {
-		movement = Vector3.left * speed;
-		chd.changeTheHeadDirection(0);
-	}
-
-	if ( rightButton.pressed && !pauseButton.paused ) {
-		movement = Vector3.right * speed;
-		chd.changeTheHeadDirection(1);
-	}
-	
-	if ( shootButton.pressed && !shootButtonDebouncer ) {
+    if ( shootButton.pressed && !shootButtonDebouncer ) {
 		this.fire();
 		shootButtonDebouncer = true;
 	}else if( !shootButton.pressed && shootButtonDebouncer ) {
 		shootButtonDebouncer = false;
 	}
-	
-	// Check for jump
-	if ( character.isGrounded && jumpButton.pressed && !pauseButton.paused ) {
-		velocity = Vector3.zero;
-		velocity.y = jumpStrength;
-	}
 
-	if (velocity.y != 0) {
-		velocity.y += Physics.gravity.y * Time.deltaTime;
-	}
-	
-	movement += Physics.gravity;
-	movement += velocity;
-	movement *= Time.deltaTime;
-	
-	// Actually move the character	
-	character.Move( movement );
-
-	if ( character.isGrounded ) {
-		velocity = Vector3.zero;
-	}
-	
 	//temp respawn stuff
 	if ( hm.isDead() ){
 		var spawn = GameObject.Find( "PlayerSpawn" );
-		
+
 		if ( spawn ) {
-			thisTransform.position = spawn.transform.position;
+			transform.position = spawn.transform.position;
 			hm.respawned();
 		}
 	}
@@ -133,8 +124,8 @@ function enemyHitPlayer(){
 }
 
 function fire(){
-	var bulletClone : Bullets = Instantiate(Bullet);
-	bulletClone.transform.position = this.transform.position;
+	var bulletClone : Bullets = Instantiate(BulletTemplate);
+	bulletClone.transform.position = bulletSource.position;
 	bulletClone.rigidbody2D.AddForce(Vector2(3000,0));
 	Destroy(bulletClone.gameObject, 0.5);
 }

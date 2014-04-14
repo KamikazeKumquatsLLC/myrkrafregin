@@ -53,8 +53,8 @@ function getHealthState () {
 	}
 }
 
-function OnControllerColliderHit (hit : ControllerColliderHit) {
-	var body = hit.collider.gameObject;
+function OnCollisionStay2D (hit : Collision2D) {
+	var body = hit.gameObject;
 	if (body.tag == "Spike") {
 		this.minusHealth();
 	}

@@ -34,12 +34,13 @@ function Update () {
 	if (pressed && !wasPressed) {
 		wasPressed = true;
 		paused = !paused;
-		if (paused) {
-			Time.timeScale = 0;
-		} else {
-			Time.timeScale = 1;
-		}
 	} else if (!pressed) {
 		wasPressed = false;
+	}
+	
+	if (paused) {
+		Time.timeScale = 0;
+	} else {
+		Time.timeScale = 1;
 	}
 }
