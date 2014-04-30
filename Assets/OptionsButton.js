@@ -1,11 +1,9 @@
 ﻿#pragma strict
 
 private var text : GUIText;
-private var persistence : PersistentData;
 
 function Start () {
 	text = GetComponent( GUIText );
-	persistence = GameObject.Find("Persistence").GetComponent(PersistentData);
 }
 
 function Update () {
@@ -25,7 +23,7 @@ function Update () {
 	}
 
 	if (pressed) {
-		persistence.settingsReturnLocation = Application.loadedLevelName;
+		PersistentData.SettingsReturnLocation = Application.loadedLevelName;
 		Application.LoadLevel("OptionsMenu");
 	}
 }

@@ -4,13 +4,11 @@ var axis : String;
 var paused = false;
 
 private var tex : GUITexture;
-private var persistence : PersistentData;
 private var texExists = true;
 private var wasPressed = false;
 
 function Start () {
 	tex = GetComponent( GUITexture );
-	persistence = GameObject.Find("Persistence").GetComponent(PersistentData);
 	/*if (!persistence.isMobile) {
 		Destroy(tex);
 		texExists = false;
@@ -27,7 +25,7 @@ function Update () {
 		}
 	}
 
-	if (!!axis && !persistence.isMobile && Input.GetAxis(axis) > 0) {
+	if (!!axis && !PersistentData.IsMobile && Input.GetAxis(axis) > 0) {
 		pressed = true;
 	}
 
@@ -37,7 +35,7 @@ function Update () {
 	} else if (!pressed) {
 		wasPressed = false;
 	}
-	
+
 	if (paused) {
 		Time.timeScale = 0;
 	} else {
