@@ -67,3 +67,7 @@ function isDead () {
 function respawned () {
 	this.healHealth();
 }
+
+function isGodMode(){
+	return godMode;
+}

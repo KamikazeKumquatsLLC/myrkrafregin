@@ -1,13 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FourButtonControl.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\EnemyABehavior.js">
     <Files>
-      <File FileName="Assets\Bullets.js" Line="8" Column="21" />
-      <File FileName="Assets\OnEnterDoor.js" Line="1" Column="1" />
-      <File FileName="Assets\FourButtonControl.js" Line="76" Column="32" />
-      <File FileName="Assets\moveLegsOnWalk.js" Line="1" Column="1" />
+      <File FileName="Assets\EnemyABehavior.js" Line="111" Column="2" />
+      <File FileName="Assets\OnEnterDoor.js" Line="22" Column="39" />
+      <File FileName="Assets\Bullets.js" Line="1" Column="1" />
       <File FileName="Assets\HealthManager.js" Line="1" Column="1" />
-      <File FileName="Assets\EnemyABehavior.js" Line="31" Column="61" />
+      <File FileName="Assets\EnemyABehavior.js" Line="21" Column="22" />
+      <File FileName="Assets\OptionsButton.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
