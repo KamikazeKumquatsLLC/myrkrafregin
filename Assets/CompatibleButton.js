@@ -9,13 +9,11 @@ var axis : String;
 var nukeGuiOffMobile = true;
 
 private var gui : GUIElement;
-private var persistence : PersistentData;
 private var guiNuked = false;
 
 function Start () {
 	gui = GetComponent( GUIElement );
-	persistence = GameObject.Find("Persistence").GetComponent(PersistentData);
-	if (nukeGuiOffMobile && !persistence.isMobile) {
+	if (nukeGuiOffMobile && !PersistentData.IsMobile) {
 		Destroy(gui);
 		guiNuked = true;
 	}
@@ -24,7 +22,7 @@ function Start () {
 function Update () {
 	var tempPressed = false;
 
-	if (persistence.isMobile) {
+	if (PersistentData.IsMobile) {
 		var count = Input.touchCount;
 
 		for (var i : int = 0; i < count; i++) {

@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Bullets.js" />
+     <Compile Include="Assets\Checkbox.js" />
      <Compile Include="Assets\CompatibleButton.js" />
      <Compile Include="Assets\EnemyABehavior.js" />
      <Compile Include="Assets\FourButtonControl.js" />
@@ -56,6 +57,7 @@
      <Compile Include="Assets\OptionsReturnButton.js" />
      <Compile Include="Assets\PauseButton.js" />
      <Compile Include="Assets\PersistentData.js" />
+     <Compile Include="Assets\Slider.js" />
      <Compile Include="Assets\SoberCharacterController.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\FollowTransform.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\RotationConstraint.js" />

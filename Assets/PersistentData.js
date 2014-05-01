@@ -1,7 +1,8 @@
 ﻿#pragma strict
 
-var settingsReturnLocation = "Main Menu";
-var isMobile : boolean;
+static var SettingsReturnLocation = "Main Menu";
+static var IsMobile : boolean;
+static var GodMode : boolean;
 var id = -1;
 
 function Start () {
@@ -9,15 +10,15 @@ function Start () {
 		Destroy(gameObject);
 	} else {
 		DontDestroyOnLoad(transform.gameObject);
-		isMobile = false;
+		IsMobile = false;
 		#if UNITY_IPHONE
-			isMobile = true;
+			IsMobile = true;
 		#elif UNITY_ANDROID
-			isMobile = true;
+			IsMobile = true;
 		#elif UNITY_BLACKBERRY
-			isMobile = true;
+			IsMobile = true;
 		#elif UNITY_WP8
-			isMobile = true;
+			IsMobile = true;
 		#endif
 	}
 }
