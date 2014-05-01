@@ -20,6 +20,8 @@ var pauseButton : PauseButton;
 var BulletTemplate : Bullets;
 var bulletSource : Transform;
 
+var hueIncrement = 1;
+
 var grounded = false;
 var groundCheck : Transform;
 var groundRadius = 0.2;
@@ -31,10 +33,13 @@ private var activeTeleporter : teleporter;
 private var hm : HealthManager;
 private var anim : Animator;
 
+private var godMode = false;
+private var hue = 1;
+
 function Start () {
 	// Cache component lookup at startup instead of doing this every frame
 	hm = GetComponent( HealthManager );
-    anim = GetComponent(Animator);
+  anim = GetComponent(Animator);
 
 	shootButtonDebouncer = false;
 
@@ -43,6 +48,47 @@ function Start () {
 	if ( spawn ) {
 		transform.position = spawn.transform.position;
 	}
+  godMode = PersistentData.GodMode;
+}
+
+private function hsl2rgb(h : float, s : float, v : float) : Color {
+  // Convert HSL to RGB
+  var r : float;
+	var g : float;
+	var b : float;
+	var max : float = v;
+	var dif : float = v * s;
+	var min : float = v - dif;
+	if (h < 60) {
+		r = max;
+		g = h * dif / 60.0 + min;
+		b = min;
+	} else if (h < 120) {
+		r = -(h - 120) * dif / 60.0 + min;
+		g = max;
+		b = min;
+	} else if (h < 180) {
+		r = min;
+		g = max;
+		b = (h - 120) * dif / 60.0 + min;
+	} else if (h < 240) {
+		r = min;
+		g = -(h - 240) * dif / 60.0 + min;
+		b = max;
+	} else if (h < 300) {
+		r = (h - 240) * dif / 60.0 + min;
+		g = min;
+		b = max;
+	} else if (h <= 360) {
+		r = max;
+		g = min;
+		b = -(h - 360) * dif / 60.0 + min;
+	}
+	return Color(Mathf.Clamp01(r), Mathf.Clamp01(g), Mathf.Clamp01(b));
+}
+
+private function setColor() {
+  this.GetComponent(SpriteRenderer).color = hsl2rgb(hue, 1, 1);
 }
 
 function FixedUpdate () {
@@ -66,6 +112,11 @@ function FixedUpdate () {
   }
   anim.SetFloat("Speed", Mathf.Abs(rigidbody2D.velocity.x));
   anim.SetFloat("vSpeed", rigidbody2D.velocity.y);
+
+  hue += hueIncrement;
+  if (hue > 360) {
+    hue -= 360;
+  }
 }
 
 private function Flip () {
@@ -74,6 +125,10 @@ private function Flip () {
 }
 
 function Update () {
+  if (godMode) {
+    setColor();
+  }
+
 	positionReady = true;
 
   if (grounded && jumpButton.pressed) {
