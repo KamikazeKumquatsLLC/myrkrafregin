@@ -2,7 +2,7 @@
 
 @script RequireComponent( SpriteRenderer );
 
-var fbc : FourButtonControl;
+private var fbc : FourButtonControl;
 
 var teleOn : Sprite;
 var teleOff : Sprite;
@@ -14,23 +14,34 @@ private var hm : HealthManager;
 
 function Start () {
 	teleState = false;
+  fbc = FourButtonControl.Player;
 	_render = GetComponent ( SpriteRenderer );
-	hm = fbc.GetComponent ( HealthManager );
+	if (!!fbc) {
+    hm = fbc.GetComponent ( HealthManager );
+  }
 }
 
 function Update () {
-	if (!teleState){
-		_render.sprite = teleOff;
-	}else{
-		_render.sprite = teleOn;
-	}
+  if (!fbc) {
+    fbc = FourButtonControl.Player;
+  } else {
+  	if (!teleState){
+  		_render.sprite = teleOff;
+  	}else{
+  		_render.sprite = teleOn;
+  	}
 
-	if( fbc.getActiveTeleporter() != this ){
-		teleState = false;
-	}
+  	if( fbc.getActiveTeleporter() != this ){
+  		teleState = false;
+  	}
+  }
 }
 
 function OnTriggerEnter2D ( player : Collider2D ){
+  if (!hm) {
+    hm = fbc.GetComponent(HealthManager);
+  }
+  
 	hm.healHealth();
 
 	if(!teleState){

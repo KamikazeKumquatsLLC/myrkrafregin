@@ -23,6 +23,6 @@ function Update () {
 	}
 
 	if (pressed) {
-		Application.LoadLevel("TestLevel");
+		Application.LoadLevel("Level1");
 	}
 }

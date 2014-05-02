@@ -3,6 +3,8 @@
 @script RequireComponent( Collider2D )
 @script RequireComponent( Rigidbody2D )
 
+static var Player : FourButtonControl;
+
 var leftButton : CompatibleButton;
 var rightButton : CompatibleButton;
 var jumpButton : CompatibleButton;
@@ -11,7 +13,7 @@ var shootButton : CompatibleButton;
 private var shootButtonDebouncer : boolean;
 
 var speed : float = 10;
-var jumpStrength : float = 80;
+var jumpStrength : float = 15;
 var positionReady = false;
 private var facingRight = true;
 
@@ -118,7 +120,7 @@ function FixedUpdate () {
   if (hue > 360) {
     hue -= 360;
   }
-  
+
   if (jumping) {
   	anim.SetBool("Ground", false);
     rigidbody2D.velocity.y = jumpStrength;
@@ -132,6 +134,8 @@ private function Flip () {
 }
 
 function Update () {
+	Player = this;
+
   if (godMode) {
     setColor();
   }
