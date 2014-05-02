@@ -2,7 +2,12 @@
 
 
 var speed = 0.04;
+private var enemyAcceleration : float;
+
 var isSmart = false;
+var isPlayerDetected : boolean;
+
+var playerDistanceBeforeDetection : int;
 
 private var waitTicks = 0;
 
@@ -11,51 +16,72 @@ var player : FourButtonControl;
 var headLeft : Sprite;
 var headRight : Sprite;
 
-var gravity : double;
+var debugStoof : float;
+
+var hasGun : boolean;
 
 var health : int;
 
+var speedIncrement : float;
+
 private var _render : SpriteRenderer;
-private var isGrounded : boolean;
+var grounded = false;
+var groundCheck : Transform;
+var groundRadius = 0.2;
+var whatIsGround : LayerMask;
 
 function Start () {
 	_render = GetComponent ( SpriteRenderer );
-	isGrounded = false;
 }
 
 function Update () {
-	move();
-	doGravity();
+	if( isPlayerDetected ){
+		move();
+	}else if(Mathf.Abs(player.transform.position.x - this.transform.position.x) < playerDistanceBeforeDetection){
+		isPlayerDetected = true;
+	}
 	
 	if(health <= 0){
 		Debug.Log("\"Blegh! I'm dead\" -" + this.gameObject.name); 
 		Destroy(this.gameObject);
 	}
+	debugStoof = this.rigidbody2D.velocity.x;
+}
+
+function FixedUpdate(){
+	grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 }
 
 function move(){
 	if(waitTicks == 5){
 		var distanceX = this.transform.position.x - player.transform.position.x;
 		var distanceY = this.transform.position.y - player.transform.position.y;
+		debugStoof = distanceY;
 		if(distanceX != null && distanceX != 0){
+			if(enemyAcceleration == 0){
+				enemyAcceleration = 1;
+			}
+			
 			if(distanceX > 0){
-				this.transform.position.x = (speed <= distanceX ? this.transform.position.x - speed : this.transform.position.x - distanceX);
+				this.rigidbody2D.velocity.x = (this.rigidbody2D.velocity.x >= -speed ? this.rigidbody2D.velocity.x - (1 / enemyAcceleration) : this.rigidbody2D.velocity.x);
+				enemyAcceleration += 0.1;
 			}else{
-				this.transform.position.x = (speed <= -distanceX ? this.transform.position.x + speed : this.transform.position.x + distanceX);
+				if(this.rigidbody2D.velocity.x <= 0 && enemyAcceleration >= 1){
+					enemyAcceleration -= 0.1;
+				}else if( this.rigidbody2D.velocity.x >= 0){
+					enemyAcceleration += 0.1;
+				}
+				this.rigidbody2D.velocity.x = (this.rigidbody2D.velocity.x <= speed ? this.rigidbody2D.velocity.x + (1 / enemyAcceleration) : this.rigidbody2D.velocity.x);
 			}
 		}
-//		if(distanceY != null && distanceY != 0){
-//			if(distanceY > 0){
-//				this.transform.position.y = (speed <= distanceY ? this.transform.position.y - speed : this.transform.position.y - distanceY);
-//			}else{
-//				this.transform.position.y = (speed <= -distanceY ? this.transform.position.y + speed : this.transform.position.y + distanceY);
-//			}
-//		}
-		waitTicks = 0;
 		
-		if((distanceX <= 0.75 && distanceX >= -0.75) && (distanceY <= 1.65 && distanceY >= -1.65)){
-			player.enemyHitPlayer();
+		if(distanceY != null && distanceY != 0){
+			if((distanceY > 2 || distanceY < -2) && grounded){
+				this.rigidbody2D.AddForce(Vector2(0,500));
+			}
 		}
+		waitTicks = 0;
+	
 	}
 	waitTicks++;
 	//Debug.Log(distanceX + ", " + distanceY);
@@ -67,18 +93,19 @@ function move(){
 	}	
 }
 
-function OnCollisionEnter(thingCollidedWith : Collision){
-	if(true){
-		isGrounded = true;
-	}
-}
-
-function doGravity(){
-	if(isGrounded == false){
-		//this.transform.position.y -= gravity;
-	}
-}
-
 function hurt( i : int ){
 	this.health -= i;
+}
+
+function OnCollisionStay2D(coll : Collision2D){
+	if(coll.gameObject.tag == "Player"){
+		player.enemyHitPlayer();
+	}
+}
+
+function OnCollisionEnter2D(coll : Collision2D){
+	if(coll.gameObject.tag == "Enemy"){
+		this.isPlayerDetected = true;
+		Debug.Log("\"Ow! Someone hit me!\" -" + this.gameObject.name);
+	}
 }

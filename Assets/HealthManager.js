@@ -1,4 +1,4 @@
-﻿#pragma strict
+#pragma strict
 
 var maxHealth : int;
 
@@ -67,4 +67,8 @@ function isDead () {
 
 function respawned () {
 	this.healHealth();
+}
+
+function isGodMode(){
+	return godMode;
 }

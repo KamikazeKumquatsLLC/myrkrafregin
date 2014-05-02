@@ -29,6 +29,7 @@ var whatIsGround : LayerMask;
 
 private var velocity : Vector3;
 private var activeTeleporter : teleporter;
+private var jumping = false;
 
 private var hm : HealthManager;
 private var anim : Animator;
@@ -117,6 +118,12 @@ function FixedUpdate () {
   if (hue > 360) {
     hue -= 360;
   }
+  
+  if (jumping) {
+  	anim.SetBool("Ground", false);
+    rigidbody2D.velocity.y = jumpStrength;
+    jumping = false;
+  }
 }
 
 private function Flip () {
@@ -132,8 +139,7 @@ function Update () {
 	positionReady = true;
 
   if (grounded && jumpButton.pressed) {
-    anim.SetBool("Ground", false);
-    rigidbody2D.AddForce(new Vector2(0, jumpStrength));
+    jumping = true;
   }
 
     if ( shootButton.pressed && !shootButtonDebouncer ) {
@@ -179,8 +185,9 @@ function enemyHitPlayer(){
 }
 
 function fire(){
+	var temp = (facingRight ? 1 : -1);
 	var bulletClone : Bullets = Instantiate(BulletTemplate);
 	bulletClone.transform.position = bulletSource.position;
-	bulletClone.rigidbody2D.AddForce(Vector2(3000,0));
+	bulletClone.rigidbody2D.AddForce(Vector2(3000 * temp,0));
 	Destroy(bulletClone.gameObject, 0.5);
 }
