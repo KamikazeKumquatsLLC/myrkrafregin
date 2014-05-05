@@ -46,25 +46,25 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Bullets.js" />
-     <Compile Include="Assets\Checkbox.js" />
-     <Compile Include="Assets\CompatibleButton.js" />
-     <Compile Include="Assets\EnemyABehavior.js" />
-     <Compile Include="Assets\FourButtonControl.js" />
-     <Compile Include="Assets\HealthManager.js" />
-     <Compile Include="Assets\OnEnterDoor.js" />
-     <Compile Include="Assets\OptionsButton.js" />
-     <Compile Include="Assets\OptionsReturnButton.js" />
-     <Compile Include="Assets\PauseButton.js" />
-     <Compile Include="Assets\PersistentData.js" />
-     <Compile Include="Assets\Slider.js" />
-     <Compile Include="Assets\SoberCharacterController.js" />
+     <Compile Include="Assets\Scripts\Bullets.js" />
+     <Compile Include="Assets\Scripts\Checkbox.js" />
+     <Compile Include="Assets\Scripts\CompatibleButton.js" />
+     <Compile Include="Assets\Scripts\EnemyABehavior.js" />
+     <Compile Include="Assets\Scripts\FourButtonControl.js" />
+     <Compile Include="Assets\Scripts\HealthManager.js" />
+     <Compile Include="Assets\Scripts\OnEnterDoor.js" />
+     <Compile Include="Assets\Scripts\OptionsButton.js" />
+     <Compile Include="Assets\Scripts\OptionsReturnButton.js" />
+     <Compile Include="Assets\Scripts\PauseButton.js" />
+     <Compile Include="Assets\Scripts\PersistentData.js" />
+     <Compile Include="Assets\Scripts\Slider.js" />
+     <Compile Include="Assets\Scripts\SoberCharacterController.js" />
+     <Compile Include="Assets\Scripts\StartGameButton.js" />
+     <Compile Include="Assets\Scripts\teleporter.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\FollowTransform.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\RotationConstraint.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\SidescrollControl.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\SmoothFollow2D.js" />
-     <Compile Include="Assets\StartGameButton.js" />
-     <Compile Include="Assets\teleporter.js" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Background.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Transparent Vertex Color.shader" />
