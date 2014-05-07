@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-static var SettingsReturnLocation = "Main Menu";
+static var LastLevel = "Main Menu";
 static var IsMobile : boolean;
 static var GodMode : boolean;
 var id = -1;
