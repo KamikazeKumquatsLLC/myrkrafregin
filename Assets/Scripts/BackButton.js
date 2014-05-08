@@ -23,7 +23,6 @@ function Update () {
 	}
 
 	if (pressed) {
-		PersistentData.SettingsReturnLocation = Application.loadedLevelName;
-		Application.LoadLevel("OptionsMenu");
+		Application.LoadLevel(PersistentData.LastLevel);
 	}
 }

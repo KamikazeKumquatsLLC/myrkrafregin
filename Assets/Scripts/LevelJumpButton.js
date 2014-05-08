@@ -1,4 +1,6 @@
-﻿#pragma strict
+#pragma strict
+
+var level : String;
 
 private var text : GUIText;
 
@@ -23,6 +25,7 @@ function Update () {
 	}
 
 	if (pressed) {
-		Application.LoadLevel("Level1");
+		PersistentData.LastLevel = Application.loadedLevelName;
+		Application.LoadLevel(level);
 	}
 }
