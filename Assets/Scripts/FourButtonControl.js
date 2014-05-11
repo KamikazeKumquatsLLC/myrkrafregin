@@ -39,10 +39,14 @@ private var anim : Animator;
 private var godMode = false;
 private var hue = 1;
 
+function Awake() {
+	Player = this;
+}
+
 function Start () {
 	// Cache component lookup at startup instead of doing this every frame
 	hm = GetComponent( HealthManager );
-  anim = GetComponent(Animator);
+    anim = GetComponent(Animator);
 
 	shootButtonDebouncer = false;
 
@@ -51,7 +55,7 @@ function Start () {
 	if ( spawn ) {
 		transform.position = spawn.transform.position;
 	}
-  godMode = PersistentData.GodMode;
+    godMode = Persistence.GodMode;
 }
 
 private function hsl2rgb(h : float, s : float, v : float) : Color {
@@ -134,7 +138,6 @@ private function Flip () {
 }
 
 function Update () {
-	Player = this;
 
   if (godMode) {
     setColor();

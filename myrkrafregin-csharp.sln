@@ -1,23 +1,31 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-
+Project("{028C008A-AFA3-3159-4AFC-4F43E123711A}") = "myrkrafregin", "Assembly-CSharp-firstpass-vs.csproj", "{0C0FAE49-56C0-819E-1270-A896987BD8B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-
+		{0C0FAE49-56C0-819E-1270-A896987BD8B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C0FAE49-56C0-819E-1270-A896987BD8B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C0FAE49-56C0-819E-1270-A896987BD8B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C0FAE49-56C0-819E-1270-A896987BD8B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																				GlobalSection(MonoDevelopProperties) = preSolution
+					GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
-		$1.inheritsSet = null
+		$1.FileWidth = 120
+		$1.IndentWidth = 8
+		$1.EolMarker = Unix
+		$1.inheritsSet = VisualStudio
+		$1.inheritsScope = text/plain
 		$1.scope = text/x-csharp
 		$0.CSharpFormattingPolicy = $2
 		$2.inheritsSet = Mono
@@ -30,6 +38,13 @@ Global
 		$3.inheritsSet = Mono
 		$3.inheritsScope = text/plain
 		$3.scope = text/plain
+		$0.TextStylePolicy = $4
+		$4.FileWidth = 120
+		$4.IndentWidth = 8
+		$4.EolMarker = Unix
+		$4.inheritsSet = VisualStudio
+		$4.inheritsScope = text/plain
+		$4.scope = application/javascript
 	EndGlobalSection
 
 EndGlobal

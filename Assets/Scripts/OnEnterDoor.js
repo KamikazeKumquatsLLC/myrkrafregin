@@ -25,7 +25,7 @@ function OnTriggerEnter2D ( player : Collider2D ){
 		fbc.moveSpawn( doorExit.transform );
 		fbc.movePlayer( doorExit.transform );
 	}else if( player.tag == "Player" && isLevelDoor ){
-    PersistentData.LastLevel = Application.loadedLevelName;
+        Persistence.LastLevel = Application.loadedLevelName;
 		Application.LoadLevel(cheatingTomFoolery);
 	}
 }

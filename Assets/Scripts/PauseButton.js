@@ -25,7 +25,7 @@ function Update () {
 		}
 	}
 
-	if (!!axis && !PersistentData.IsMobile && Input.GetAxis(axis) > 0) {
+	if (!!axis && !Persistence.IsMobile && Input.GetAxis(axis) > 0) {
 		pressed = true;
 	}
 

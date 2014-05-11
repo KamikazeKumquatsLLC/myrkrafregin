@@ -13,7 +13,7 @@ private var guiNuked = false;
 
 function Start () {
 	gui = GetComponent( GUIElement );
-	if (nukeGuiOffMobile && !PersistentData.IsMobile) {
+	if (nukeGuiOffMobile && !Persistence.IsMobile) {
 		Destroy(gui);
 		guiNuked = true;
 	}
@@ -22,7 +22,7 @@ function Start () {
 function Update () {
 	var tempPressed = false;
 
-	if (PersistentData.IsMobile) {
+	if (Persistence.IsMobile) {
 		var count = Input.touchCount;
 
 		for (var i : int = 0; i < count; i++) {

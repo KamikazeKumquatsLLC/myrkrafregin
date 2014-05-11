@@ -11,7 +11,6 @@ var playerDistanceBeforeDetection : int;
 
 private var waitTicks = 0;
 
-var player : FourButtonControl;
 
 var headLeft : Sprite;
 var headRight : Sprite;
@@ -25,12 +24,14 @@ var health : int;
 var speedIncrement : float;
 
 private var _render : SpriteRenderer;
+private var player : FourButtonControl;
 var grounded = false;
 var groundCheck : Transform;
 var groundRadius = 0.2;
 var whatIsGround : LayerMask;
 
 function Start () {
+	player = FourButtonControl.Player;
 	_render = GetComponent ( SpriteRenderer );
 }
 

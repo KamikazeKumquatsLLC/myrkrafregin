@@ -23,6 +23,6 @@ function Update () {
 	}
 
 	if (pressed) {
-		Application.LoadLevel(PersistentData.LastLevel);
+		Application.LoadLevel(Persistence.LastLevel);
 	}
 }

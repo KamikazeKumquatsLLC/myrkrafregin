@@ -1,0 +1,93 @@
+﻿using UnityEngine;
+using System.Collections;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+
+public class Persistence : MonoBehaviour {
+
+	public static string LastLevel = "Main Menu";
+	public static bool IsMobile = false;
+	public static bool GodMode = false;
+	public static int LastWorldUnlocked = 1;
+	public static int LastLevelUnlocked = 1;
+
+	public bool isLevel = true;
+	public int worldNumber;
+	public int levelNumber;
+
+	private static bool ready = false;
+
+	// Use this for initialization
+	void Start () {
+		if (ready) {
+			if (isLevel) {
+				if (worldNumber > Persistence.LastWorldUnlocked) {
+					Persistence.LastWorldUnlocked = worldNumber;
+					Persistence.LastLevelUnlocked = levelNumber;
+					Persistence.Save();
+				} else if (levelNumber > Persistence.LastLevelUnlocked) {
+					Persistence.LastLevelUnlocked = levelNumber;
+					Persistence.Save();
+				}
+			}
+			Destroy(this.gameObject);
+		} else {
+			if (!Persistence.Load()) {
+				IsMobile = false;
+				#if UNITY_IPHONE
+				IsMobile = true;
+				#elif UNITY_ANDROID
+				IsMobile = true;
+				#elif UNITY_BLACKBERRY
+				IsMobile = true;
+				#elif UNITY_WP8
+				IsMobile = true;
+				#endif
+				Persistence.Save();
+			}
+			ready = true;
+		}
+	}
+	
+	public static void Save() {
+		BinaryFormatter bf = new BinaryFormatter();
+		FileStream file = File.Create(Application.persistentDataPath + "/state.dat");
+
+		PlayerData data = new PlayerData();
+		data.IsMobile = Persistence.IsMobile;
+		data.GodMode = Persistence.GodMode;
+		data.LastLevelUnlocked = Persistence.LastLevelUnlocked;
+		data.LastWorldUnlocked = Persistence.LastWorldUnlocked;
+
+		bf.Serialize(file, data);
+		file.Close();
+	}
+
+	public static bool Load() {
+		if (File.Exists(Application.persistentDataPath + "/state.dat")) {
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream file = File.Open(Application.persistentDataPath + "/state.dat", FileMode.Open);
+
+			PlayerData data = (PlayerData) bf.Deserialize(file);
+			Persistence.IsMobile = data.IsMobile;
+			Persistence.GodMode = data.GodMode;
+			Persistence.LastLevelUnlocked = data.LastLevelUnlocked;
+			Persistence.LastWorldUnlocked = data.LastWorldUnlocked;
+
+			file.Close();
+
+			return true; // successfully loaded
+		} else {
+			return false; // didn't load since save file didn't exist
+		}
+	}
+}
+
+[Serializable]
+class PlayerData {
+	public bool IsMobile;
+	public bool GodMode;
+	public int LastWorldUnlocked;
+	public int LastLevelUnlocked;
+}

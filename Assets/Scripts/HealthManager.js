@@ -16,7 +16,7 @@ function Start () {
 	healthLow = Mathf.Floor( maxHealth / 3 );
 	healthMedium = 2 * healthLow ;
 	healthHigh = Mathf.Floor( healthMedium * 1.5 );
-  godMode = PersistentData.GodMode;
+    godMode = Persistence.GodMode;
 }
 
 function Update () {

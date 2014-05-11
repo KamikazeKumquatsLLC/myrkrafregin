@@ -25,7 +25,7 @@ function Update () {
 	}
 
 	if (pressed) {
-		PersistentData.LastLevel = Application.loadedLevelName;
+		Persistence.LastLevel = Application.loadedLevelName;
 		Application.LoadLevel(level);
 	}
 }
