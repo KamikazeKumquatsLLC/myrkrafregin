@@ -6,7 +6,6 @@ using System.IO;
 
 public class Persistence : MonoBehaviour {
 
-	public static string LastLevel = "Main Menu";
 	public static bool IsMobile = false;
 	public static bool GodMode = false;
 	public static int LastWorldUnlocked = 1;
@@ -17,22 +16,24 @@ public class Persistence : MonoBehaviour {
 	public int levelNumber;
 
 	private static bool ready = false;
+  private static Stack backStack;
 
 	// Use this for initialization
 	void Start () {
+    if (isLevel) {
+      if (worldNumber > Persistence.LastWorldUnlocked) {
+        Persistence.LastWorldUnlocked = worldNumber;
+        Persistence.LastLevelUnlocked = levelNumber;
+        Persistence.Save();
+      } else if (levelNumber > Persistence.LastLevelUnlocked) {
+        Persistence.LastLevelUnlocked = levelNumber;
+        Persistence.Save();
+      }
+    }
 		if (ready) {
-			if (isLevel) {
-				if (worldNumber > Persistence.LastWorldUnlocked) {
-					Persistence.LastWorldUnlocked = worldNumber;
-					Persistence.LastLevelUnlocked = levelNumber;
-					Persistence.Save();
-				} else if (levelNumber > Persistence.LastLevelUnlocked) {
-					Persistence.LastLevelUnlocked = levelNumber;
-					Persistence.Save();
-				}
-			}
 			Destroy(this.gameObject);
 		} else {
+      backStack = new Stack();
 			if (!Persistence.Load()) {
 				IsMobile = false;
 				#if UNITY_IPHONE
@@ -49,7 +50,7 @@ public class Persistence : MonoBehaviour {
 			ready = true;
 		}
 	}
-	
+
 	public static void Save() {
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file = File.Create(Application.persistentDataPath + "/state.dat");
@@ -82,6 +83,14 @@ public class Persistence : MonoBehaviour {
 			return false; // didn't load since save file didn't exist
 		}
 	}
+
+  public static void PushLevel(String lastLevel) {
+    backStack.Push(lastLevel);
+  }
+
+  public static String PopLevel() {
+    return (String)backStack.Pop();
+  }
 }
 
 [Serializable]
