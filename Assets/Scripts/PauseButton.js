@@ -9,33 +9,33 @@ private var wasPressed = false;
 
 function Start () {
 	tex = GetComponent( GUITexture );
-	/*if (!persistence.isMobile) {
+	if (!Persistence.IsMobile) {
 		Destroy(tex);
 		texExists = false;
-	}*/
+	}
 }
 
 function Update () {
-	var pressed = false;
+    var pressed = false;
 
-	for (var i : int = 0; i < Input.touchCount; i++) {
-		var touch : Touch = Input.GetTouch(i);
-		if (texExists && tex.HitTest( touch.position )) {
-			pressed = true;
-		}
-	}
+    for (var i : int = 0; i < Input.touchCount; i++) {
+        var touch : Touch = Input.GetTouch(i);
+        if (texExists && tex.HitTest( touch.position )) {
+            pressed = true;
+        }
+    }
 
-	if (!!axis && !Persistence.IsMobile && Input.GetAxis(axis) > 0) {
-		pressed = true;
-	}
+    if (!!axis && !Persistence.IsMobile && Input.GetButtonDown(axis)) {
+        pressed = true;
+    }
 
-	if (pressed && !wasPressed) {
-		wasPressed = true;
-		paused = !paused;
-	} else if (!pressed) {
-		wasPressed = false;
-	}
-
+    if (pressed && !wasPressed) {
+        wasPressed = true;
+        paused = !paused;
+    } else if (!pressed) {
+        wasPressed = false;
+    }
+    
 	if (paused) {
 		Time.timeScale = 0;
 	} else {

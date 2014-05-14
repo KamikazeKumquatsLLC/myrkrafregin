@@ -63,8 +63,6 @@ public class Persistence : MonoBehaviour {
         data.LastLevelUnlocked = Persistence.LastLevelUnlocked;
         data.LastWorldUnlocked = Persistence.LastWorldUnlocked;
 
-        Debug.Log("Saving " + data.ToString() + " to " + Application.persistentDataPath + "/state.dat...");
-
         bf.Serialize(file, data);
         file.Close();
     }
