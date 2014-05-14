@@ -91,6 +91,10 @@ public class Persistence : MonoBehaviour {
   public static String PopLevel() {
     return (String)backStack.Pop();
   }
+
+  public static void DeleteSave() {
+    File.Delete(Application.persistentDataPath + "/state.dat");
+  }
 }
 
 [Serializable]
