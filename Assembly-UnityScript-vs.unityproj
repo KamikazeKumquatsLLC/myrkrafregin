@@ -56,8 +56,11 @@
      <Compile Include="Assets\Scripts\FourButtonControl.js" />
      <Compile Include="Assets\Scripts\HealthManager.js" />
      <Compile Include="Assets\Scripts\LevelJumpButton.js" />
+     <Compile Include="Assets\Scripts\NukePauseMenuButton.js" />
      <Compile Include="Assets\Scripts\OnEnterDoor.js" />
      <Compile Include="Assets\Scripts\PauseButton.js" />
+     <Compile Include="Assets\Scripts\RespawnButton.js" />
+     <Compile Include="Assets\Scripts\RestartButton.js" />
      <Compile Include="Assets\Scripts\Slider.js" />
      <Compile Include="Assets\Scripts\SoberCharacterController.js" />
      <Compile Include="Assets\Scripts\teleporter.js" />

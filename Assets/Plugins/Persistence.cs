@@ -21,6 +21,8 @@ public class Persistence : MonoBehaviour {
     void Awake() {
         if (deleting) {
             File.Delete(Application.persistentDataPath + "/state.dat");
+            GodMode = false;
+            LastWorldUnlocked = LastLevelUnlocked = -1;
             deleting = false;
         }
         if (isLevel) {

@@ -20,7 +20,7 @@ function Start () {
 }
 
 function Update () {
-	if(godMode){
+	if(godMode && healthCurrent != -9001){
 		healHealth();
 	}
 }
@@ -59,6 +59,10 @@ function OnCollisionStay2D (hit : Collision2D) {
 	if (body.tag == "Spike") {
 		this.minusHealth();
 	}
+}
+
+function kill() {
+    healthCurrent = -9001; // special unreachable sentinel value to allow respawning in god mode
 }
 
 function isDead () {
