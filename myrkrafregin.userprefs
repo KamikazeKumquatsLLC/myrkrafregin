@@ -1,17 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets (Mobile)\Scripts\SmoothFollow2D.js">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ExitButton.js">
     <Files>
-      <File FileName="Assets\Plugins\Persistence.cs" Line="117" Column="45" />
-      <File FileName="Assets\Scripts\PauseButton.js" Line="44" Column="14" />
-      <File FileName="Assets\Scripts\NukePauseMenuButton.js" Line="26" Column="6" />
-      <File FileName="Assets\Scripts\LevelJumpButton.js" Line="43" Column="1" />
-      <File FileName="Assets\Scripts\RespawnButton.js" Line="27" Column="2" />
-      <File FileName="Assets\Scripts\FourButtonControl.js" Line="201" Column="1" />
-      <File FileName="Assets\Scripts\HealthManager.js" Line="78" Column="2" />
-      <File FileName="Assets\Scripts\RestartButton.js" Line="27" Column="2" />
-      <File FileName="Assets\Plugins\Persistence.cs" Line="117" Column="45" />
-      <File FileName="Assets\Standard Assets (Mobile)\Scripts\SmoothFollow2D.js" Line="22" Column="1" />
+      <File FileName="Assets\Scripts\ExitButton.js" Line="26" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
