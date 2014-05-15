@@ -2,8 +2,10 @@
 
 var axis : String;
 
-function Start () {
+private var wasPressed = false;
 
+function Start () {
+    wasPressed = PauseButton.WasPressed();
 }
 
 function Update () {
@@ -12,8 +14,15 @@ function Update () {
     for (var i : int = 0; i < Input.touchCount; i++) {
         var touch : Touch = Input.GetTouch(i);
         if (guiText.HitTest( touch.position )) {
-            pressed = true;
+            if (!wasPressed) {
+                pressed = true;
+                wasPressed = true;
+            }
         }
+    }
+    
+    if (!pressed) {
+        wasPressed = false;
     }
     
     if (!!axis && !Persistence.IsMobile && Input.GetButtonDown(axis)) {
@@ -35,6 +44,5 @@ static function Run() {
     for (var i = 0; i < pauseMenuComponents.length; i++) {
         Destroy(pauseMenuComponents[i].gameObject);
     }
-    Debug.Log("Unpausing!");
     PauseButton.Unpause();
 }

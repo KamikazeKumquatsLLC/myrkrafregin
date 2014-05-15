@@ -9,6 +9,7 @@ TagManager:
   - Pause Menu Component
   - Enemy
   - Bullet
+  - Control
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

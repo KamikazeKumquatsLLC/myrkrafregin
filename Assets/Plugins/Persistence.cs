@@ -37,16 +37,20 @@ public class Persistence : MonoBehaviour {
         }
         if (!ready) {
             backStack = new Stack();
-            if (!Persistence.Load()) {
+			var shouldCheckForMobile = !Persistence.Load();
+#if UNITY_EDITOR
+			shouldCheckForMobile = true;
+#endif
+            if (shouldCheckForMobile) {
                 IsMobile = false;
                 #if UNITY_IPHONE
-                IsMobile = true;
+                	IsMobile = true;
                 #elif UNITY_ANDROID
-                IsMobile = true;
+                	IsMobile = true;
                 #elif UNITY_BLACKBERRY
-                IsMobile = true;
+                	IsMobile = true;
                 #elif UNITY_WP8
-                IsMobile = true;
+                	IsMobile = true;
                 #endif
                 Persistence.Save();
             }
