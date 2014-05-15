@@ -19,6 +19,8 @@ function Start () {
 }
 
 function Update () {
+    Screen.lockCursor = !paused;
+    
     var pressed = false;
 	if (paused) {
 		Time.timeScale = 0;

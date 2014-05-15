@@ -44,7 +44,7 @@ function Update () {
 			tempPressed = true;
 		}
 
-		if (!!axis && Input.GetAxis(axis) > 0) {
+		if (!!axis && Input.GetButton(axis)) {
 			tempPressed = true;
 		}
 	}
