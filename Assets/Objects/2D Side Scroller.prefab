@@ -490,6 +490,7 @@ MonoBehaviour:
   rightButton: {fileID: 11400014}
   jumpButton: {fileID: 11400010}
   shootButton: {fileID: 11400012}
+  fireRate: .100000001
   speed: 5
   jumpStrength: 8
   positionReady: 0

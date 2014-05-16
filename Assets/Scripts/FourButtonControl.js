@@ -10,7 +10,8 @@ var rightButton : CompatibleButton;
 var jumpButton : CompatibleButton;
 var shootButton : CompatibleButton;
 
-private var shootButtonDebouncer : boolean;
+var fireRate : float;
+private var nextFire : float;
 
 var speed : float = 10;
 var jumpStrength : float = 15;
@@ -48,7 +49,7 @@ function Start () {
 	hm = GetComponent( HealthManager );
     anim = GetComponent(Animator);
 
-	shootButtonDebouncer = false;
+	nextFire = 0;
 
 	// Move the character to the correct start position in the level, if one exists
 	var spawn = GameObject.Find( "PlayerSpawn" );
@@ -149,11 +150,9 @@ function Update () {
     jumping = true;
   }
 
-    if ( shootButton.pressed && !shootButtonDebouncer ) {
+    if ( shootButton.pressed && Time.time > nextFire ) {
 		this.fire();
-		shootButtonDebouncer = true;
-	}else if( !shootButton.pressed && shootButtonDebouncer ) {
-		shootButtonDebouncer = false;
+		nextFire = Time.time + fireRate;
 	}
 
 	//temp respawn stuff

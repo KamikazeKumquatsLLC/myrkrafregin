@@ -38,6 +38,7 @@ function Update () {
 }
 
 function OnTriggerEnter2D ( player : Collider2D ){
+  if (player.tag != "Player") return;
   if (!hm) {
     hm = fbc.GetComponent(HealthManager);
   }

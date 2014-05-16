@@ -43,7 +43,6 @@ function Update () {
 	}
 	
 	if(health <= 0){
-		Debug.Log("\"Blegh! I'm dead\" -" + this.gameObject.name); 
 		Destroy(this.gameObject);
 	}
 	debugStoof = this.rigidbody2D.velocity.x;
@@ -107,6 +106,5 @@ function OnCollisionStay2D(coll : Collision2D){
 function OnCollisionEnter2D(coll : Collision2D){
 	if(coll.gameObject.tag == "Enemy"){
 		this.isPlayerDetected = true;
-		Debug.Log("\"Ow! Someone hit me!\" -" + this.gameObject.name);
 	}
 }
