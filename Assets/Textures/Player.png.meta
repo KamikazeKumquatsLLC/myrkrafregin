@@ -1,0 +1,351 @@
+fileFormatVersion: 2
+guid: d382c3eb6e8e93c459a839a8a92ae08c
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -2
+  maxTextureSize: 512
+  textureSettings:
+    filterMode: 0
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 10
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: legRightDown
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 246
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: legRightUp
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 246
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: legLeftUp
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 246
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: legLeftDown
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 246
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: crotch
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 255
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: armRight
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 265
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Player_6
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 265
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Player_7
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 265
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Player_8
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 265
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Player_9
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 265
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: armLeft
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 265
+        width: 5
+        height: 9
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: chestFullHealth
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 266
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: chestMedHealth
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 266
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: chestLowHealth
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 266
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: neckFullHealth
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 281
+        width: 5
+        height: 1
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: neckMedHealth
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 279
+        width: 5
+        height: 1
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: neckLowHealth
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 277
+        width: 5
+        height: 1
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Player_17
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 283
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Player_18
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 283
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Player_19
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 292
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Player_20
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 292
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Player_21
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 301
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Player_22
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 310
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Player_23
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 310
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Player_24
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 301
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Player_25
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 310
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Player_26
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 310
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Player_27
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 301
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Player_28
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 301
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Player_29
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 292
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: Player_30
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 292
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: head1Visor1Left
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 283
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: head1Visor1Right
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 283
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: waist
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 263
+        width: 7
+        height: 1
+      alignment: 0
+      pivot: {x: .5, y: .5}
+  spritePackingTag: 
+  userData: 
